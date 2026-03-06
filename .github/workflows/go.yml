@@ -9,7 +9,7 @@ on:
 jobs:
 
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     env:
       HOST: localhost
       DBPORT: 5432
@@ -58,7 +58,12 @@ jobs:
         name: programa
         path: main
 
-  docker:
+#  docker:
+#    needs: build
+#    uses: ./.github/workflows/Docker.yml
+#    secrets: inherit
+
+  EC2:
     needs: build
-    uses: ./.github/workflows/Docker.yml
+    uses: ./.github/workflows/EC2.yml
     secrets: inherit
